@@ -1,0 +1,104 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>新增新闻</title>
+    <link rel='icon' href='pics/logo.jpg' type='image/x-ico' /> 
+
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<link href="custom_css/index.css" rel="stylesheet">
+		
+  </head>
+	
+	<body>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+			<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	    <script>
+	    function createNews() {
+			var news_title = $("#news_title").val();
+			var news_content = $("#news_content").val();
+			if(news_title.length < 0) {
+				alert("新闻标题不能为空");
+			} else if(news_content.length < 0) {
+				alert("新闻内容不能为空");
+			}
+			$.post("http://localhost/uml/public/index/newsmanager/createNews",
+				{"news_title":news_title,"news_content":news_content, "user_id":localStorage['uml_user_id']},
+				function(data,status){
+				datajson = eval("(" + data + ")")
+				if (datajson['type']) {
+					console.log(datajson['news']);
+			    	alert(datajson['message']);
+			  	} else {
+			    	alert(datajson['message']);
+			  	}
+			});
+	    }
+
+	    $(document).ready(function(){
+			$("#username").text(localStorage['uml_user_name']);
+	    	var now_url = $('#logout_url').attr("href")+localStorage['uml_user_id'];
+    		$('#logout_url').attr("href",now_url);
+	      });
+	    </script>
+
+	    <div id="header" class="row">
+	      <div class ="col-md-7">
+	      </div>
+	      <div class ="col-md-2">
+	        <div class ="col-md-4">
+	          <h3>hello,</h3>
+	        </div>
+	        <div class="col-md-8">
+	          <h3 id="username">anonymous</h3>
+	        </div>
+	      </div>
+	      <div class ="col-md-2">
+	        <div class="col-md-2">
+	        </div>
+	        <div class="col-md-10">
+	        <h3><a id="logout_url" href="http://localhost/uml/public/index/login/logout/userid/">退出登录</a></h3>
+	        </div>
+	      </div>
+	    </div>
+
+		<div id="content" class="form-horizontal">
+	  		<div class="form-group">
+	    		<label for="news_title" class="col-xs-1 control-label">新闻标题</label>
+	    		<div class="col-xs-10">
+	      			<textarea class="form-control" id="news_title" name="news_title"></textarea>
+	    		</div>
+	  		</div>
+	  		<div class="form-group">
+	    		<label for="news_content" class="col-xs-1 control-label">新闻内容</label>
+	    		<div class="col-xs-10">
+	    			<textarea class="form-control" rows="23" id="news_content" name="news_content"></textarea>
+	    		</div>
+	  		</div>
+	  		<div class="form-group">
+	  			<div class="col-xs-1"></div>
+	      		<button type="submit" class="btn btn-default col-xs-10" id="news_submit" onclick="createNews()">
+	      			提交
+	      		</button>
+	  		</div>
+		</div>
+
+		<div id="footer">
+		</div>
+	</body>
+</html>

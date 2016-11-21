@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Team</title>
+    <link rel='icon' href='pics/logo.jpg' type='image/x-ico' />
+
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<link href="custom_css/index.css" rel="stylesheet">
+    <script>
+    $(document).ready(function(){
+      $("#chinese").click(function(){
+        $("#chinese").attr("disabled","disabled");
+        $("#english").removeAttr("disabled");
+          window.location.href="../page/研究团队.html";
+      });
+      $("#english").click(function(){
+        $("#english").attr("disabled","disabled");
+        $("#chinese").removeAttr("disabled");
+        window.location.href="../english/研究团队.html";
+      });
+      if(localStorage['uml_user_name']) {
+        $("h4#username").text(localStorage['uml_user_name']);
+        $("#user_info").hide();
+      } else {
+        $("#logout_btn").hide();
+      }
+      $("#logout_btn").click(function(){
+        $.post("http://localhost/uml/public/index/login/logout/userid/"+localStorage['uml_user_id'],
+        {},function(data,status){
+          var datajson = eval("(" + data + ")");
+          alert(datajson['message']);
+        }
+        );
+        localStorage.removeItem("uml_user_name");
+        localStorage.removeItem("uml_user_id");
+        localStorage.removeItem("uml_user_account");
+        window.location.reload();
+      });
+      $("#login_btn").click(function(){
+        window.location.href="login.html";
+      });
+      $("#logup_btn").click(function(){
+        window.location.href="signup.html";
+      });
+    });
+    </script>
+  </head>
+
+  <body>
+  <div class="jumbotron" id="header">
+      <div class="container">
+      <!--昌哥看这里！！！！！！！！！！！！！-->
+      <div class="row">
+        <div class="col-xs-2">
+          <button class="btn btn-default" id="chinese">Chinese</button>
+          <button class="btn btn-default" id="english" disabled=“disabled”>English</button>
+        </div>
+        <div class="col-xs-8"></div>
+        <div class="col-xs-2"  id="user_info">
+        <div class="col-xs-6">
+          <button class="btn btn-default" id="login_btn">Login</button>
+        </div>
+        <div class="col-xs-6">
+          <button class="btn btn-default" id="logup_btn">Sign up</button>
+        </div>
+      </div>
+      </div>
+        <div class="row" id="login_user_info">
+          <div class="col-md-9"></div>
+          <div class="col-md-2">
+            <div class ="col-md-4">
+              <h4>hello,</h4>
+            </div>
+            <div class="col-md-8">
+              <h4 id="username">anonymous</h4>
+            </div>
+            </div>
+          <div class="col-md-1">
+            <button class="btn btn-default" id="logout_btn">Logout</button>
+          </div>
+        </div>
+        <!--看完了!!!!!-->
+
+      	<div class="col-md-2 logo">
+          <img src="pics/logo.jpg" height="130">
+        </div>
+        <div class="col-md-10">
+        </br>
+          <div class="row">
+            <div class="col-md-9 eng-title">
+              <p><b>National Research and Development Plan: Research on Biological Characteristics of the Tropical Disease Related Invasion vectors and Pathogens</b><p>
+            </div>
+            <div class="col-md-3 search-box">
+              <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control" placeholder="search" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button">
+                      <span class=" glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+		      <!-- <div class="col-md-3 search-box">
+			      <div class="row">
+			       	<div class="col-md-offset-1 col-md-11">
+
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                    <input type="text" class="  search-query form-control" placeholder="搜索" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="button">
+                        <span class=" glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+
+			      	</div>
+			      </div>
+		      </div> -->
+      </div>
+
+      <div class="container">
+	      <div class="blog-masthead">
+		      <div class="row">
+		      	<div class="col-md-12">
+			        <nav class="blog-nav" >
+			          <a class="blog-nav-item" href="index.html">Home</a>
+			          <a class="blog-nav-item" href="关于项目.html">Project</a>
+			          <a class="blog-nav-item active" href="研究团队.html">Team</a>
+					  <a class="blog-nav-item" href="新闻动态.html">News</a>
+                      <a class="blog-nav-item" href="通知公告.html">Announcement</a>
+			          <a class="blog-nav-item" href="项目进展.html">Progress</a>
+			          <a class="blog-nav-item" href="发表文章.html">Article</a>
+			          <a class="blog-nav-item" href="学术交流.html">Academic</a>
+			          <a class="blog-nav-item" href="数据工具.html">Data/Tool</a>
+			        </nav>
+			    	</div>
+			    </div>
+		    </div>
+      </div>
+
+    </div>
+
+	<div class="container">
+	    <div class="row">
+		   <div class="col-sm-3 team-list">
+		       <div class="blog-masthead">
+				<nav class="blog-nav1">
+				    <div class="col-xs">
+			          <a class="blog-nav1-item" href="#">Main team</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#1">Fu Linchun</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#2">Chen Peiquan</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#2">Li Changqing</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#3">Zeng Qingping</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#5">Yuan Dongsheng</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#6">Yang Ruiyi</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#7">Zhang Fengxue</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#8">Hu Jieying</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#9">Huang Ling</a>
+
+            <a class="blog-nav1-item" href="#">Participate team</a>
+			          <a class="blog-nav1-item col-md-offset-2" href="#">Team A</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">Member1</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">Member2</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">Member3</a>
+
+			          <a class="blog-nav1-item col-md-offset-2" href="#">Team B</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">Member1</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">Member2</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">Member3</a>
+					</div>
+			    </nav>
+		       </div>
+			</div>
+		   <div class="col-sm-9 data-show">
+		       <p class = "team-introduction-title">Team Introduction：</p>
+			   <p class = "team-introduction-paragraph" id="1">Fu Linchun, male, researcher, doctoral tutor, Guangzhou Institute of Tropical Medicine, director of the Guangdong Provincial Health System "five a project" academic and technical leaders, the State Administration of traditional Chinese medicine AIDS prevention expert, Vice chairman of the Chinese Association for the prevention and treatment of AIDS branch, vice chairman of the Guangdong Provincial Tropical Medicine Association, the Chinese Medical Association of tropical diseases and parasite members, enjoy the State Council special government allowances experts. Long-term engaged in anti-virus research of malaria and Chinese medicine. Presided or participated in the artemisinin class four new drugs eight kinds of clinical research, involved in artemisinin-based compound research, these drugs have become the best antimalarial drugs, widely used in global malaria control. Involved in the treatment of cerebral malaria research, the mortality rate of cerebral malaria control in 10% or less, reaching the international advanced level. Is currently involved in traditional Chinese medicine in AIDS prevention and treatment of clinical and experimental research. The research achievement has won the national scientific and technological progress second prize, third prize of the 1, the provincial and ministerial level first prize 3 times, hosted and participated in government research projects at all levels more than 20, published more than 50 papers. Won the "Outstanding Young Chinese Medicine Award", the Ministry of Education Fok Ying Tung Education Foundation of young teachers of the second prize. Has trained doctoral, master's graduate student more than 10, postdoctoral researcher 2.</p>
+			   <p class = "team-introduction-paragraph" id="2">Chen Peiquan, male, Luoding City, Guangdong Province, born in September 1949. He is a member of Guangzhou Institute of Tropical Diseases and Parasitology, a member of the Standing Committee of Guangdong Provincial Association of Tropical Medicine, and an expert of the National Natural Science Foundation of China (NSFC). He is a researcher of Guangzhou University of Traditional Chinese Medicine and a doctoral tutor of Tropical Diseases , The Guangdong Provincial Natural Science Foundation expert assessment experts. Professor Chen Peiquan engaged in pathogenic biology and Chinese medicine prevention and treatment of tropical diseases teaching and research for more than 30 years, involved in artemisinin basic and clinical research, unity and cooperation, found that artemisinin insecticidal speed than the international commonly used A Fluoroquinol, quinine, chloroquine and so much faster; appropriate delay long course of treatment, the cure rate of up to 90%; for cerebral malaria treatment, mortality was less than 10%; southern Hainan Plasmodium falciparum chloroquine, Chloroquine, piperaquine, quinine and so on of Plasmodium falciparum gamete is invalid, in the first 3-4 weeks after administration can also be infected with mosquitoes, and cyanogen drugs after the first administration 14 days can block the spread of falciparum malaria; currently Hainan falciparum malaria artesunate and dihydroartemisinin is sensitive; compound dihydroartemisinin is expected to become WHO first-line antimalarial drugs; the early nineties of last century began Involved in biotechnology, the in vivo, in vitro experiments linked to the spread of drug-blocking disease research and clinical application of a more in-depth insights. The current research direction is to molecular biology and cell biology of Chinese medicine to control tropical diseases (infectious diseases) mechanism and practical methods of in-depth study. He has participated in or presided over the completion of more than 20 research projects of WHO, national, ministry (department) level and foreign cooperation, and many times as an expert to go abroad to carry out cooperative research in the international academic conference read the paper. In the provincial level and above published more than 40 papers. Has trained and assisted the training of master, doctoral students more than 10. Prof. Chen Peiquan was awarded the title of "National Outstanding Teacher" and "Outstanding Teacher of South Guangdong". He was awarded one of the national scientific and technological progress awards and five prizes of provincial and ministerial level scientific and technological progress.</p>
+			   <p class = "team-introduction-paragraph" id="3">Li Changqing, male, born in September 1965, Hunan Huarong, researcher, clinical basis of traditional Chinese medicine professional instructor. Academic expertise: Chinese medicine treatment of chronic hepatitis B, liver fibrosis, liver cirrhosis and fatty liver clinical medical research. Teaching and Research Achievements: In recent years, presided over two provincial-level issues and a hall-level subjects, to participate in a National Natural Science Foundation of China and a provincial-level research, mainly carried out matrine targeting anti-hepatitis B Virus and anti-immune liver injury experimental study, confirmed that matrine targeting agent can improve matrine anti-hepatitis B virus effect, and can reduce the dosage and reduce its toxic effects. The clinical and pharmacodynamic studies of anti-hepatitis B virus (HBV), anti-hepatic injury and anti-hepatic fibrosis effects of several traditional Chinese herbal remedies including Phyllanthus emblica were completed. Published papers: published more than thirty academic papers, to participate in the preparation of a book. Recruitment Number of Researchers: Two graduates, three in reading. Academic exchanges with foreign countries: 06,07 years has been invited to attend the Taiwan Symposium on the treatment of liver disease across the Taiwan Strait.</p>
+			   <p class = "team-introduction-paragraph" id="4">Zeng Qingping, male, Changde, Hunan, born in 1961 April. Master of Science, Doctor of Engineering, researcher. Chinese Society of Biochemistry and Molecular Biology, Chinese Medicine Association of Infectious Diseases and Parasitic Diseases, China Association of STD and AIDS Prevention and Treatment and Guangdong Provincial Association of Tropical Diseases, employed as the State Food and Drug Administration, the National Natural Science Foundation of Guangdong Province Guangzhou Natural Science Foundation, Guangzhou biomedical expert review experts, the incumbent Guangzhou University of Chinese Medicine, Institute of Tropical Medicine, director of biotechnology research, has chaired and participated in the National Natural Science Foundation project (artemisinin biosynthetic pathway of local reconstruction and green The study of antiviral activity of transgenic Chinese herbal medicine against AIDS, the anti-virus experimental study of transgenic interferon-α gene of Momordica charantia L.), the study of antiviral activity of aristolochic acid, The project of high-yield artemisinin-based metabolic pathway engineering breeding research, the provincial natural science fund project (squalene synthase gene knockout and transgenic artemisinin high-yielding plant cultivation, traditional Chinese medicine compound DNA vaccine to control monkey AIDS , The Provincial Science and Technology Program (for the induction of oxidative stress and the large-scale transformation of artemisinin precursors), and the development of an antisense probe microsphere for the integrated diagnosis of AIDS, hepatitis B and STD genes ) And a number of horizontal cooperation projects (high-performance low-cost malaria detection kit development, etc.), at home and abroad published dozens of papers, monographs 4. He has been a visiting scholar at the University of Helsinki, Finland. He also visited Oxford University and Cambridge University, the Max-Plank Institute of Germany, the University of Leiden and the Swiss Federal Institute of Technology. . He has been invited to participate in the Plant Metabolic Engineering Symposium of the famous Gordon Scientific Conference (GRC) in the United States. He has also exhibited papers and conducted academic exchanges. He has also established cooperative relationships with many universities and research institutes in Europe and the United States. Since 1980, he has published more than 100 academic papers (including SCI papers) at home and abroad, and published more than 50 gene sequences in GenBank. He has authored "Plant Bioreactor" (2008, Chemical Industry Press) (2004, People's Health Publishing House), "Human AIDS" (2000, People's Health Publishing House), edited the monograph "Principles and methods of plant biotechnology", "Plant Biotechnology Principles and Methods" (2006, Science Press), "Biomedical Frontier Technology" (1990, Hunan Science and Technology Press). Apply for two national invention patents, winning eight. Now the field of expertise for biological engineering, the main research direction of Chinese medicine bio-engineering (transgenic Artemisinin and Artemisinin synthesis of microbial reactor development) and molecular medicine (Artemisia annua genomics, transcriptomics, proteomics, Metabolomics and network regulation), and the development of rapid diagnostic kits for pathogens of major infectious diseases (malaria, AIDS, SARS, STD, etc.). Studies have been completed or are being carried out, including Artemisia annua amorphadiene synthase gene cloning and its expression in E. coli, artemisinin precursor microbial synthesis and its cell-free extract of Artemisia annua in the biological Transformation, the expression of CYP gene in yeast endomembrane and membrane-bound CYP catalyzed transformation of artemisinin precursor, yeast SS gene cloning and agrobacterium-mediated antisense SS gene transfer; Artemisia squalene synthase reverse Gene cloning, sequencing and bioinformatics analysis of Artemisia annua L. based on anchored RT-PCR, construction of cDNA library of Artemisia annua L. and developmental regulation model of CYP gene cloning and expression, Artemisia argyi ADS gene promoter low temperature induced binding and transcription factor isolation and identification of artemisinin biosynthesis regulation and its artificial intervention, environmental stress induced artemisinin synthesis gene expression and signal transduction mechanism, singlet oxygen mediated Artemisia annua Acid into artemisinin in vitro and in vivo pathways, high-throughput screening and bioassay of anti-malarial components of traditional Chinese medicine based on PfLDH target.</p>
+			   <p class = "team-introduction-paragraph" id="5">Dr. Yuan Dongsheng, male, born in Jiangxi Province, was born in October 1964, doctor of medicine, researcher, master of Chinese medicine clinical basic master tutor, director of Guangdong Province liver disease association, Guangzhou city science and technology appraisal expert. Is mainly engaged in Chinese medicine anti-hepatitis B virus, liver fibrosis and Chinese medicine treatment of alcoholic and non-alcoholic fatty liver in the basic and clinical research. Long-term adherence to digestive medicine, hepatitis specialist clinical, has accumulated a wealth of Chinese and Western medicine treatment of chronic hepatitis B, cirrhosis, fatty liver clinical experience. Published more than 20 papers, presided over a national project, presided over the provincial project 2, participate in provincial project 3 items. Participate in the "Clinical Foundation of Traditional Chinese Medicine" textbook (Higher Education Press), deputy editor of "Basic Medical Science" textbook (Science Press). Has guided four graduate students.</p>
+			   <p class = "team-introduction-paragraph" id="6">Yang Ruifi, female, born in Dapu County, Guangdong Province, was born in May 1972. He graduated from Jinan University in 1998 with a Master's degree in Immunogenetics, Associate Research Fellow of Institute of Tropical Medicine, Guangzhou University of Chinese Medicine, Master of Clinical Foundation of Chinese Medicine, And members of the Society of Parasitic Diseases. He has hosted or participated in the National Natural Science Foundation of China, the State Administration of Traditional Chinese Medicine, the Guangdong Provincial Natural Science Foundation, the Guangdong Provincial Department of Education, the Guangdong Provincial Health Department, the Guangdong Provincial Administration of Traditional Chinese Medicine and other research projects more than 20 items. In the domestic influential core journals published dozens of papers, edited 3 books. Now the field of expertise for the medical and biological engineering, the main research direction for the Chinese biological engineering (including transgenic Chinese medicine, active ingredients of Chinese medicine anabolic research, Chinese medicine active ingredient genetic engineering research) and Chinese medicine on tumor immune regulation.</p>
+			   <p class = "team-introduction-paragraph" id="7">hang Fengxue researcher, Anhui Province, was born in 1962. Guangzhou University of Traditional Chinese Medicine integrated basic Western medicine doctoral tutor. Institute of Tropical Medicine, director of the Institute of Virology, the World Federation of Chinese Medicine Society of Professional Committee of liver disease, executive director of the Guangdong Provincial Association of tropical medicine, the Deputy Secretary-General, Guangdong Province, "thousands of Talents Project" training object, the Chinese Academy of Sciences " Western Light "Talent Training Program" joint scholars. " "Biotechnology Communication" director, Journal of Guangzhou University of Chinese Medicine editorial board. In 1985 graduated from Anhui College of traditional Chinese medicine, and received a bachelor's degree in 1991, Guangzhou University of Traditional Chinese Medicine with a master's degree in basic medicine, August 2002 from the Guangzhou University of Traditional Chinese Medicine in-service doctorate. January 2003 to December 2003 by the National Science and Technology selected in Nagasaki University, Japan, Department of Molecular Immunology and Genetics. In June 2005 received a doctorate in medicine and access to the Hong Kong Science and Technology Foundation is seeking "is seeking outstanding graduate award." Long engaged in virology research and antiviral drugs in vivo and in vitro activity research development and evaluation. As a key member of the National Natural Science Foundation completed three, presided over the Guangdong Provincial Natural Science Fund Project 3, 2, presided over a major project of modern Chinese medicine in Guangzhou City; published more than 30 scientific papers, SCI included 4 articles. Edited two academic monographs. Responsible for the nucleoside anti-hepatitis B class of new drug adefovir dipivoxil pharmacodynamic evaluation and in July 2003 by the clinical approval. In addition, is responsible for the three main pharmacodynamic evaluation of traditional Chinese medicine and has been identified through the provincial level. Apply for three patents. In recent years, he has established a stable research partnership with Prof. Dr. Mark Feitelson from Thomas Jefferson University, Prof. Chen Jijun from Kunming Institute of Botany, Chinese Academy of Sciences, and Dr. Xu Min from Hong Kong Baptist University. University molecular medical research center Professor Li Gang in the endorphins of SIV infection caused by host cell apoptosis and other areas of cooperation research. Opened and lectured "virology theory and technology" a graduate course, each school year 30 hours, teaching good effect. And the preparation of a textbook for graduate students. Has independently recruited eight graduate students and is responsible for guiding four doctoral dissertations experiment. Guide seven-year students to participate in the "Challenge Cup" competition in 2003 won the provincial prize.</p>
+			   <p class = "team-introduction-paragraph" id="8">Hu Yingjie researcher, male, born in 1962, native of Hunan. Guangzhou University of Traditional Chinese Medicine, deputy director of the Institute of Tropical Medicine and Pharmacy Research Office, doctoral tutor, Guangdong Province, expert review of new drug experts, Guangdong Province, Guangzhou City, science and technology project review experts. In 1983 graduated fromShanghai First Medical CollegeMedical Chemistry (Bachelor); In 1988 graduated from the Kunming Institute of Botany, Chinese Academy of botany chemistry (master); 2005 graduated fromGuangzhou University of Chinese Medicine (Ph.D.). Since 1988 in the Southwest Forestry College to teach plant chemistry, organic chemistry, medicinal plant resources development and utilization of science and other courses, and engaged in a number of national, provincial project of plant chemistry research; 1996 Guangzhou University of Tropical Medicine Medical Research Institute engaged in drug activity of Chinese herbal medicine research. Research areas involved in innovative Chinese medicine research and development of Chinese herbal medicine and chemical composition of the structure and activity of drugs, especially in the treatment of AIDS and anti-tumor activity of traditional Chinese medicine natural product research. As the editorial board and deputy editor of the preparation of "plant chemistry" and "medicinal plant resources development and utilization of" two college textbooks. Participated in or hosted the national and provincial and ministerial level scientific research projects 10; in Phytochemistry, chemistry, Chinese herbal medicine and other pharmaceutical journals published more than 30 papers, of which 8 journals included in the SCI. 3 invention patents granted. In 2002 and 2005 by the Guangdong Provincial Science and Technology Award two prize 1.</p>
+			   <p class = "team-introduction-paragraph" id="9">Huang Ling, female, born in November 1963, associate professor of Ganzhou, Jiangxi Province. Main research directions: Pharmacology and toxicology of traditional Chinese medicine, Chinese medicine on immune diseases, pharmacodynamics and safety evaluation and mechanism. Prior to September 2003, he worked in the Institute of Tropical Medicine, Guangzhou University of Chinese Medicine. He was appointed as the deputy director of the Laboratory of Pharmacology and Toxicology. He is mainly engaged in anti-malaria, hepatitis, AIDS and autoimmune diseases. Participating in the preclinical studies of two antimalarial drugs, Artecom and Artekin, have been approved by the state, with Artekin's safety evaluation as the trial leader, which has been recommended by WHO. Now "Journal of Guangzhou University of Traditional Chinese Medicine" editorial department is responsible for experimental research papers editing. In the national and provincial magazines published a total of 26 papers. Presided over the bureau level subject 3, participate in national and provincial level subject 4 items.</p>
+			   <p class = "team-introduction-title">Research Direction：</p>
+		       <p class = "team-introduction-paragraph">Tropical disease diagnosis and pathogen identification technology development and application research, tropical pathogen and vector-based drug resistance mechanism research, development and application of tropical disease vaccine research, tropical disease-related Peptide drug development and application research, pathology and diagnosis of tropical diseases and prevention and control measures, prevention and control of tropical diseases, the study of high incidence of Li disease in our province and the relationship between tropical diseases.</p>
+           <p class = "team-introduction-title">Task：</p>
+  			   <p class = "team-introduction-paragraph">To carry out the parasite, zygomatic rickettsia and other pathogenic molecular medical research. Its main task is to use the known gene sequences and bioinformatics methods in Genbank to screen possible target genes and identify their functions, to master the pathogen in the environment and drug selection pressure gene variation, pathogens and host (human and savings (Molecular mechanism of pathogenesis and immunity), laying a solid foundation for the development and research of new therapeutic drugs, diagnostic reagents and gene vaccines.<p>
+  			   <p class = "team-introduction-paragraph">Tropical disease diagnosis and pathogen identification technology is the basis of tropical disease prevention and treatment technology, clinical diagnosis, efficacy and epidemiological investigation have an important role. In addition to mastering and utilizing the existing basic diagnosis and pathogen identification techniques of tropical diseases, the Key Laboratory of Tropical Diseases should continue to track the progress of research at home and abroad, and continuously apply new technologies to basic research , And actively explore the feasibility of its clinical application. It will focus on molecular biology, genomics, proteomics, immunology, cell biology and modern tissue (immune) pathology techniques to find new targets for the diagnosis and treatment of tropical diseases, and strive to research and develop with independent knowledge Property rights of tropical disease diagnosis and pathogen identification technology, and these techniques applied to clinical and epidemiological studies. And strive to build a laboratory with the discovery, diagnosis and identification of new tropical pathogen capacity of the domestic authority of the laboratory.<p>
+  			   <p class = "team-introduction-paragraph">Resistance of tropical pathogens to drug resistance and vector-borne resistance to various insecticides is another major factor in the control of tropical diseases such as malaria. In this research field, the laboratory will mainly apply molecular biology, genomics, molecular immunology methods and means to study molecular mechanisms of tropical disease pathogens and vector-based drug resistance mechanism, and then find the treatment and intervention of tropical pathogens And insect-borne vector resistance of the new method.<p>
+  			   <p class = "team-introduction-paragraph">The current researchers generally believe that the vaccine is the most safe, cheap and effective means of prevention and treatment of tropical diseases. But today, in the field of tropical disease vaccine, especially malaria vaccine research, although the international community has invested a lot of manpower, financial resources and material resources, scientists have done a lot of research work, has not yet developed and produced any clear clinical control effect Of the vaccine. Therefore, there are many research gaps in the development of tropical disease vaccine. Key Laboratory of Tropical Pathogen Biology will make full use of molecular biology, immunology, cell biology and contemporary advanced biotechnology methods and means, in addition to looking for effective induction of the host immune system of tropical disease pathogens and humoral cellular immune response vector and Zuo , To solve the traditional vaccine immunization titer is too low, the duration is not long traditional vaccine strategy deficiencies, but also the use of new construction and preparation of vaccine technology and strategies focus on the development of malaria, dengue fever, Rickettsia and other tropical diseases Prevention and treatment of vaccine.<p>
+  			   <p class = "team-introduction-paragraph">Polypeptides are biologically active substances involved in various cellular functions in organisms. Almost all cells are regulated by peptides, which are involved in various fields such as hormone secretion, nerve, cell growth and reproduction. The study of the effects of peptides secreted by the body on the pathogenesis and prognosis of the disease will not only contribute to the understanding of human physiological and pathophysiological processes, but also provide a theoretical basis for clinical diagnosis and treatment of diseases, but also help to find some New proteins associated with disease. The Key Laboratory of Tropical Diseases will focus on molecular and cellular biology to search for active peptides from marine organisms and tropical pathogens. It will seek to discover several polypeptides with tropical disease activity, and explore the role of these peptides in Tropical disease incidence and prognosis of the mechanism of action for the prevention and treatment of tropical diseases to find new methods and strategies.<p>
+  			   <p class = "team-introduction-paragraph">Tropical disease is mainly caused by biological disease-causing disease, is the tropical region of the frequently-occurring disease and endemic disease. The epidemic of infectious SARS (SARS), which occurred in Guangdong in 2003 and spread to the whole country and the world at large, and the global epidemic of avian influenza in the world in early 2004 caused great disaster to the people of our country and the world. The outbreak of these diseases to the vast Scientific research workers sounded the alarm: must attach great importance to prevention and treatment of infectious diseases research. Although Hainan in these two epidemic spared, but must not be taken lightly. It is important to explore the diagnostic techniques of sensitive, specific, rapid, accurate and quantitative infectious diseases for the effective control of outbreaks of infectious diseases. We will be in the pathogen molecular medical research on the basis of the molecular biology of viral infection diagnosis, cell model, antiviral therapy and evaluation of efficacy of the study; known pathogens such as malaria parasite, hepatitis B virus, tsutsugamushi disease Rick Rapid, sensitive and specific immunoassay for the diagnosis and treatment of human immunodeficiency virus infections, such as nematodes, cysticercus cellulosae, cysticercus cellulosae, schistosomiasis, liver flukes, Toxoplasma gondii, Pneumocystis, Cryptosporidium, HIV and coronavirus. Genetic testing of new technologies, the establishment of technical standards, research and development of commercial testing kit, the establishment of common methods of diagnosis and prevention of tropical diseases, research and development of gene vaccines.<p>
+  			   <p class = "team-introduction-paragraph">To carry out the external testing of tropical pathogens, and provide professional treatment recommendations. The epidemiological investigation of the above-mentioned various human parasites and other infectious diseases among the population in the province will fill in the gaps in relevant information in the province and provide accurate epidemiological data for relevant organizations. At the same time to carry out prevention and control of related research. AIDS and tuberculosis prevention and control measures and strategies, focusing on AIDS and tuberculosis diagnosis and screening, prevention and education and intervention methods such as applied research.<p>
+  			   <p class = "team-introduction-title">Articles supported by this project：</p>
+  		       <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/18660804"> ·Genome sequence of the metazoan plant-parasitic nematode Meloidogyne incognita.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/23874975"> ·A lover and a fighter: the genome sequence of an entomopathogenic nematode Heterorhabditis bacteriophora.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/19606141"> ·The genome of the blood fluke Schistosoma mansoni.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/9851916"> ·Genome sequence of the nematode C. elegans: a platform for investigating biology.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/16679166"> ·Soil-transmitted helminth infections: ascariasis, trichuriasis, and hookworm.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="www.ncbi.nlm.nih.gov/pubmed/24580726"> ·The genome and life-stage specific transcriptomes of Globodera pallida elucidate key aspects of plant parasitism by a cyst nematode.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/19361881"> ·How to become a parasite –lessons from the genomes of nematodes.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/17885136"> ·Draft genome of the filarial nematode parasite Brugia malayi.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/22919663"> ·Impact of Leishmania metalloprotease GP63 on macrophage signaling.</a></p>
+  			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/25257746"> ·Large, rapidly evolving gene families are at the forefront of host-parasite interactions in Apicomplexa.</a></p>
+  		   </div>
+  		</div>
+  	</div>
+
+
+
+  	<div class="container">
+  		<hr>
+  	<footer class="footer">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="col-sm-7 project-introduction">
+                <p><b>Related links</b></p>
+                <p><a href="http://zssom.sysu.edu.cn/">Medical school of Sun Yat-Sen College</a></p>
+                <p><a href="http://www.ipd.org.cn/">The Chinese center for disease control and prevention of parasitic disease prevention and control</a></p>
+                <p><a href="http://life.fudan.edu.cn/ ">School of Life Science of Fudan University </a></p>
+                <p><a href="http://www.ipd.org.cn/">School of public health and tropical medicine of Southern Medical University</a></p>
+              </div>
+              <div class="col-sm-5">
+                <p><b>Resources sharing</b></p>
+                <p><a href="http://www.chinaias.cn/wjPart/index.aspx ">The database of invasive species in China</a></p>
+                <p><a href="http://www.iucngisd.org/gisd/">Global invasive species database(GISD)</a></p>
+                <p><a href="https://www.vectorbase.org/">Medium of human pathogens invertebrates biological information resources database（VectorBase）</a></p>
+              </div>
+            </div>
+            <div class="col-sm-3 col-sm-offset-1">
+              <div class=" QRcode-reminder">
+                <p>WeChat public account：</p>
+              </div>
+              <!-- <div class="col-sm-4"> -->
+                <img src="pics/QRcode.png" height="105">
+              <!-- </div> -->
+            </div>
+          </div>
+          <div class="col-sm-6 col-sm-offset-3">
+            <p>Copyright &copy; 2016 <a href="http://www.sysu.edu.cn/2012/cn/index.htm">Sun Yat-Sen University</a> &nbsp&nbsp&nbsp
+            Connect us：<a href="mailto:wuzhd@mail2.sysu.edu.cn">wuzhd@mail2.sysu.edu.cn</a></p>
+            <p>Address：Sun Yat-Sen University, No. 74 Zhongshan Road, Guangzhou, China（Postal code：510080）</p>
+          </div>
+        </footer>
+  	</div>
+
+    </body>
+  </html>

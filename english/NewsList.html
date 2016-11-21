@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="zh-CN">
+  	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	    <title>后台新闻管理</title>
+	    <link rel='icon' href='pics/logo.jpg' type='image/x-ico' /> 
+
+			<!-- 新 Bootstrap 核心 CSS 文件 -->
+			<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+			<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+			<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+			<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+			<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+			<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+			<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+			<link href="custom_css/index.css" rel="stylesheet">
+		
+  	</head>
+
+  	<body>
+  	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	    <script>
+
+      	function editNews(news_id) {
+      		window.location.href="EditNews.html?news_id="+news_id;
+      	}
+
+
+      	function deleteNews(news_id) {
+      		if (confirm("确定要删除该新闻？")) {
+      			$.post("http://localhost/uml/public/index/newsmanager/deleteNews?news_id="+news_id,
+		      		{"user_id":localStorage['uml_user_id']},
+              function(data, status){
+		      			datajson = eval("(" + data + ")");
+		      			if (datajson['type']) {
+		                	console.log(datajson["news"]);
+		                	alert(datajson["message"]);
+	      					window.location.reload();
+		              	} else {
+		                	alert(datajson["message"]);
+		              	}
+		      		}
+		      	);
+      		}
+      	}
+
+      	function createNews() {
+      		window.location.href="CreateNews.html";
+      	}
+
+	    $(document).ready(function(){
+          $("#username").text(localStorage['uml_user_name']);
+          var now_url = $('#logout_url').attr("href")+localStorage['uml_user_id'];
+          $('#logout_url').attr("href",now_url);
+          
+	      	$.get("http://localhost/uml/public/index/shownews/getList",
+	      		function(data, status){
+	      			console.log("in here");
+	      			datajson = eval("(" + data + ")");
+	      			var news_list = datajson['news'];
+	      			for(var i=0; i<news_list.length; ++i) {
+	      				var news_id = news_list[i]["news_id"];
+	      				var news_title = news_list[i]["news_title"];
+	      				var tr = $('<tr></tr>').html('<td class=col-xs-10>'+news_title+'</td><td><button type="button" class="btn btn-default" onclick="editNews('+news_id+')">修改</button></td><td><button type="button" class="btn btn-default" onclick="deleteNews('+news_id+')">删除</button></td>');
+	      				$("#news_list").append(tr);
+	      			}
+	      		}
+	      	);
+	      });
+	    </script>
+
+
+	<div id="header" class="row">
+      <div class ="col-md-7">
+      </div>
+      <div class ="col-md-2">
+        <div class ="col-md-4">
+          <h3>hello,</h3>
+        </div>
+        <div class="col-md-8">
+          <h3 id="username">anonymous</h3>
+        </div>
+      </div>
+      <div class ="col-md-2">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+        <h3><a id="logout_url" href="http://localhost/uml/public/index/login/logout/userid/">退出登录</a></h3>
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="news_application" class="row">
+      	<div class="col-xs-12">
+      		<div class="col-xs-1"></div>
+      		<button class="btn btn-default col-xs-10" onclick="createNews()">新增</button>
+      	</div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+          <h3>新闻列表</h3>
+          <table class="table table-hover" id="news_list">
+          	<tr>
+          		
+          	</tr>
+            <tr>
+            <th>
+              新闻标题
+            </th>
+            <th>
+              修改
+            </th>
+            <th>
+              删除
+            </th>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+
+      <div id="footer">
+      </div>
+
+	</body>

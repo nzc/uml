@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>首页</title>
+    <link rel='icon' href='pics/logo.jpg' type='image/x-ico' />
+
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<link href="custom_css/index.css" rel="stylesheet">
+    <script>
+    $(document).ready(function(){
+      $("#username").text(localStorage['uml_user_name']);
+      var now_url = $('#logout_url').attr("href")+localStorage['uml_user_id'];
+      $('#logout_url').attr("href",now_url);
+      $.post("http://localhost/uml/public/index/usermanage/showApplicatedUsers/userid/"+localStorage['uml_user_id'],{},function(data,status){
+        var datajson = eval("(" + data + ")");
+        if(!datajson['type']){
+          alert(datajson['message']);
+        }
+        for(var i = 0; i < datajson['users'].length; ++i) {
+          var tr = $('<tr id='+'"'+datajson['users'][i]['user_id']+'"'+'></tr>').html('<td>'+(i+1).toString()+'</td><td>'+datajson['users'][i]['user_name']+'</td><td><button type="button" class="btn btn-success agree">同意</button></td><td><button type="button" class="btn btn-danger disagree">拒绝</button></td>');
+          $("#appList").append(tr);
+        }
+      });
+      //同意
+      $("#appList").on("click",".agree",function(){
+        console.log($(this).parent().parent().attr("id"));
+        $.post("http://localhost/uml/public/index/usermanage/setUserFlag/userid/"+localStorage['uml_user_id']+"/applicationid/"+$(this).parent().parent().attr("id")+"/setflag/1/",
+        {},function(data,status){
+          var datajson = eval("(" + data + ")");
+          alert(datajson['message']);
+          window.location.reload();
+        }
+        );
+      });
+
+      //不同意
+      $("#appList").on("click",".disagree",function(){
+        console.log($(this).parent().parent().attr("id"));
+        $.post("http://localhost/uml/public/index/usermanage/setUserFlag/userid/"+localStorage['uml_user_id']+"/applicationid/"+$(this).parent().parent().attr("id")+"/setflag/-1/",
+        {},function(data,status){
+          var datajson = eval("(" + data + ")");
+          alert(datajson['message']);
+          window.location.reload();
+        }
+        );
+      });
+
+      //添加新管理员
+      $("#add_user_btn").click(function(){
+        var account = $("#inputAccount").val();
+        var name = $("#inputName").val();
+        var password = $("#inputPassword").val();
+        var password2 = $("#inputPassword2").val();
+        if (account.length < 6) {
+          alert("账号太短");
+          return;
+        } else if (name.length < 3) {
+          alert("用户名太短");
+          return;
+        } else if (password != password2) {
+          alert("两次密码不一致");
+          return;
+        } else if (password.length < 6) {
+          alert("密码太短");
+          return;
+        }
+        $.post("http://localhost/uml/public/index/usermanage/createManager/userid/"+localStorage['uml_user_id']+"/newusername/"+name+"/newuseraccount/"+account+"/newpassword/"+password+"/newclass/2/",{},function(data,status){
+          alert(data);
+        });
+      });
+
+      //显示管理员列表
+      $.post("http://localhost/uml/public/index/usermanage/queryManager/userid/"+localStorage['uml_user_id'],{},function(data,status){
+        var datajson = eval("(" + data + ")");
+        console.log(data);
+        if(!datajson['type']){
+          alert(datajson['message']);
+        }
+        for(var i = 0; i < datajson['users'].length; ++i) {
+          var tr = $('<tr id='+'"'+datajson['users'][i]['user_id']+'"'+'></tr>').html('<td>'+(i+1).toString()+'</td><td>'+datajson['users'][i]['user_name']+'</td><td><button type="button" class="btn btn-danger del">删除</button></td>');
+          $("#delList").append(tr);
+        }
+      });
+
+      //删除管理员
+      $("#delList").on("click",".del",function(){
+        $.post("http://localhost/uml/public/index/usermanage/deleteManager/userid/"+localStorage['uml_user_id']+"/deluserid/"+$(this).parent().parent().attr("id"),
+        {},function(data,status){
+          var datajson = eval("(" + data + ")");
+          alert(datajson['message']);
+          window.location.reload();
+        }
+        );
+      });
+    });
+    </script>
+
+  </head>
+
+  <body>
+    <div id="header" class="row">
+      <div class ="col-md-7">
+      </div>
+      <div class ="col-md-2">
+        <div class ="col-md-4">
+          <h3>hello,</h3>
+        </div>
+        <div class="col-md-8">
+          <h3 id="username">anonymous</h3>
+        </div>
+      </div>
+      <div class ="col-md-2">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+        <h3><a id="logout_url" href="http://localhost/uml/public/index/login/logout/userid/">退出登录</a></h3>
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="userApplication" class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+          <h3>用户申请列表</h3>
+          <table class="table table-hover" id="appList">
+            <tr>
+            <th>
+              #
+            </th>
+            <th>
+              用户名
+            </th>
+            <th>
+              同意
+            </th>
+            <th>
+              拒绝
+            </th>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+
+
+      <div id="addUser" class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+          <h3>添加管理员</h3>
+          <table class="table table-hover" id="addList">
+            <tr>
+              <th>
+                #
+              </th>
+              <th>
+                账号
+              </th>
+              <th>
+                用户名
+              </th>
+              <th>
+                密码
+              </th>
+              <th>
+                确认密码
+              </th>
+              <th>
+                提交
+              </th>
+            </tr>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                <input type="text" class="form-control" id="inputAccount" placeholder="useraccount" name="user_account">
+              </td>
+              <td>
+                <input type="text" class="form-control" id="inputName" placeholder="username" name="user_name">
+              </td>
+              <td>
+                <input type="password" class="form-control" id="inputPassword" placeholder="password" name="user_pwd">
+              </td>
+              <td>
+                <input type="password" class="form-control" id="inputPassword2" placeholder="password" name="user_pwd2">
+              </td>
+              <td>
+                <button type="button" class="btn btn-success" id="add_user_btn">提交</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div id="deleteUser" class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+          <h3>删除管理员</h3>
+          <table class="table table-hover" id="delList">
+            <tr>
+              <th>
+                #
+              </th>
+              <th>
+                用户名
+              </th>
+              <th>
+                删除
+              </th>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

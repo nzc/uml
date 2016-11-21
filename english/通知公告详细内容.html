@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>通知详情</title>
+    <link rel='icon' href='pics/logo.jpg' type='image/x-ico' />
+
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<link href="custom_css/index.css" rel="stylesheet">
+    <script>
+    $(document).ready(function(){
+      $("#chinese").click(function(){
+        var loc = location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var inform_id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+        $("#chinese").attr("disabled","disabled");
+        $("#english").removeAttr("disabled");
+          window.location.href="../page/通知公告详细内容.html?inform_id="+inform_id;
+      });
+      $("#english").click(function(){
+        var loc = location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var inform_id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+        $("#english").attr("disabled","disabled");
+        $("#chinese").removeAttr("disabled");
+        window.location.href="../english/通知公告详细内容.html?inform_id="+inform_id;
+      });
+      if(localStorage['uml_user_name']) {
+        $("h4#username").text(localStorage['uml_user_name']);
+        $("#user_info").hide();
+      } else {
+        $("#logout_btn").hide();
+      }
+      $("#logout_btn").click(function(){
+        $.post("http://localhost/uml/public/index/login/logout/userid/"+localStorage['uml_user_id'],
+        {},function(data,status){
+          var datajson = eval("(" + data + ")");
+          alert(datajson['message']);
+        }
+        );
+        localStorage.removeItem("uml_user_name");
+        localStorage.removeItem("uml_user_id");
+        localStorage.removeItem("uml_user_account");
+        window.location.reload();
+      });
+      $("#login_btn").click(function(){
+        window.location.href="login.html";
+      });
+      $("#logup_btn").click(function(){
+        window.location.href="signup.html";
+      });
+    });
+    </script>
+  </head>
+
+  <body>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" id="header">
+      <div class="container">
+      <!--昌哥看这里！！！！！！！！！！！！！-->
+      <div class="row">
+        <div class="col-xs-2">
+          <button class="btn btn-default" id="chinese">Chinese</button>
+          <button class="btn btn-default" id="english" disabled=“disabled”>English</button>
+        </div>
+        <div class="col-xs-8"></div>
+        <div class="col-xs-2"  id="user_info">
+        <div class="col-xs-6">
+          <button class="btn btn-default" id="login_btn">Login</button>
+        </div>
+        <div class="col-xs-6">
+          <button class="btn btn-default" id="logup_btn">Sign up</button>
+        </div>
+      </div>
+      </div>
+        <div class="row" id="login_user_info">
+          <div class="col-md-9"></div>
+          <div class="col-md-2">
+            <div class ="col-md-4">
+              <h4>hello,</h4>
+            </div>
+            <div class="col-md-8">
+              <h4 id="username">anonymous</h4>
+            </div>
+            </div>
+          <div class="col-md-1">
+            <button class="btn btn-default" id="logout_btn">退出</button>
+          </div>
+        </div>
+        <!--看完了!!!!!-->
+
+      	<div class="col-md-2 logo">
+          <img src="pics/logo.jpg" height="130">
+        </div>
+        <div class="col-md-10">
+        </br>
+          <div class="row">
+            <div class="col-md-9 eng-title">
+              <p><b>National Research and Development Plan: Research on Biological Characteristics of the Tropical Disease Related Invasion vectors and Pathogens</b><p>
+            </div>
+            <div class="col-md-3 search-box">
+              <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control" placeholder="搜索" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button">
+                      <span class=" glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+		      <!-- <div class="col-md-3 search-box">
+			      <div class="row">
+			       	<div class="col-md-offset-1 col-md-11">
+
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                    <input type="text" class="  search-query form-control" placeholder="搜索" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="button">
+                        <span class=" glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+
+			      	</div>
+			      </div>
+		      </div> -->
+      </div>
+
+      <div class="container">
+	      <div class="blog-masthead">
+		      <div class="row">
+		      	<div class="col-md-12">
+              <nav class="blog-nav" >
+                <a class="blog-nav-item" href="index.html">Home</a>
+			          <a class="blog-nav-item" href="关于项目.html">Project</a>
+			          <a class="blog-nav-item" href="研究团队.html">Team</a>
+					  <a class="blog-nav-item" href="新闻动态.html">News</a>
+                      <a class="blog-nav-item active" href="通知公告.html">Announcement</a>
+			          <a class="blog-nav-item" href="项目进展.html">Progress</a>
+			          <a class="blog-nav-item" href="发表文章.html">Article</a>
+			          <a class="blog-nav-item" href="学术交流.html">Academic</a>
+			          <a class="blog-nav-item" href="数据工具.html">Data/Tool</a>
+			        </nav>
+			    	</div>
+			    </div>
+		    </div>
+      </div>
+
+    </div>
+
+  <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script>
+    function setInform(inform_id) {
+      $.get("http://localhost/uml/public/index/informmanager/queryInform?inform_id="+inform_id,
+        function(data, status){
+          datajson = eval("(" + data + ")");
+          var inform = datajson["inform"];
+          $("#inform_title").text(inform["inform_title"]);
+          var inform_content_paragraphs = inform["inform_content"].split("\n");
+          for (var i=0; i<inform_content_paragraphs.length; ++i) {
+            var paragraph=$("<p></p>").text(inform_content_paragraphs[i]);
+            $("#inform_content").append(paragraph);
+          }
+        });
+    }
+
+    $(document).ready(function(){
+      var loc = location.href;
+      var n1 = loc.length;//地址的总长度
+      var n2 = loc.indexOf("=");//取得=号的位置
+      var inform_id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+      setInform(inform_id);
+    });
+
+  </script>
+
+	<div class="container">
+      <h1 class="inform" align="center" id="inform_title">
+       <!--
+        js 增加内容
+       -->
+      </h1>
+      <hr>
+
+      <div id="inform_content">
+       <!--
+        js 增加内容
+       -->
+      </div>
+
+  </div>
+
+
+
+  <div class="container">
+		<hr>
+	<footer class="footer">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="col-sm-7 project-introduction">
+              <p><b>Related links</b></p>
+              <p><a href="http://zssom.sysu.edu.cn/">Medical school of Sun Yat-Sen College</a></p>
+              <p><a href="http://www.ipd.org.cn/">The Chinese center for disease control and prevention of parasitic disease prevention and control</a></p>
+              <p><a href="http://life.fudan.edu.cn/ ">School of Life Science of Fudan University </a></p>
+              <p><a href="http://www.ipd.org.cn/">School of public health and tropical medicine of Southern Medical University</a></p>
+            </div>
+            <div class="col-sm-5">
+              <p><b>Resources sharing</b></p>
+              <p><a href="http://www.chinaias.cn/wjPart/index.aspx ">The database of invasive species in China</a></p>
+              <p><a href="http://www.iucngisd.org/gisd/">Global invasive species database(GISD)</a></p>
+              <p><a href="https://www.vectorbase.org/">Medium of human pathogens invertebrates biological information resources database（VectorBase）</a></p>
+            </div>
+          </div>
+          <div class="col-sm-3 col-sm-offset-1">
+            <div class=" QRcode-reminder">
+              <p>WeChat public account：</p>
+            </div>
+            <!-- <div class="col-sm-4"> -->
+              <img src="pics/QRcode.png" height="105">
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3">
+          <p>Copyright &copy; 2016 <a href="http://www.sysu.edu.cn/2012/cn/index.htm">Sun Yat-Sen University</a> &nbsp&nbsp&nbsp
+          Connect us：<a href="mailto:wuzhd@mail2.sysu.edu.cn">wuzhd@mail2.sysu.edu.cn</a></p>
+          <p>Address：Sun Yat-Sen University, No. 74 Zhongshan Road, Guangzhou, China（Postal code：510080）</p>
+        </div>
+      </footer>
+	</div>
+
+  </body>
+</html>

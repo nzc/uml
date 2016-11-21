@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>研究团队</title>
+    <link rel='icon' href='pics/logo.jpg' type='image/x-ico' />
+
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<link href="custom_css/index.css" rel="stylesheet">
+    <script>
+    $(document).ready(function(){
+      $("#chinese").click(function(){
+        $("#chinese").attr("disabled","disabled");
+        $("#english").removeAttr("disabled");
+          window.location.href="../page/研究团队.html";
+      });
+      $("#english").click(function(){
+        $("#english").attr("disabled","disabled");
+        $("#chinese").removeAttr("disabled");
+        window.location.href="../english/研究团队.html";
+      });
+      if(localStorage['uml_user_name']) {
+        $("h4#username").text(localStorage['uml_user_name']);
+        $("#user_info").hide();
+      } else {
+        $("#logout_btn").hide();
+      }
+      $("#logout_btn").click(function(){
+        $.post("http://localhost/uml/public/index/login/logout/userid/"+localStorage['uml_user_id'],
+        {},function(data,status){
+          var datajson = eval("(" + data + ")");
+          alert(datajson['message']);
+        }
+        );
+        localStorage.removeItem("uml_user_name");
+        localStorage.removeItem("uml_user_id");
+        localStorage.removeItem("uml_user_account");
+        window.location.reload();
+      });
+      $("#login_btn").click(function(){
+        window.location.href="login.html";
+      });
+      $("#logup_btn").click(function(){
+        window.location.href="signup.html";
+      });
+    });
+    </script>
+  </head>
+
+  <body>
+  <div class="jumbotron" id="header">
+      <div class="container">
+      <!--昌哥看这里！！！！！！！！！！！！！-->
+      <div class="row">
+        <div class="col-xs-2">
+          <button class="btn btn-default" id="chinese" disabled=“disabled”>中文</button>
+          <button class="btn btn-default" id="english">英文</button>
+        </div>
+        <div class="col-xs-8"></div>
+        <div class="col-xs-2"  id="user_info">
+          <div class="col-xs-6">
+            <button class="btn btn-default" id="login_btn">Login</button>
+          </div>
+          <div class="col-xs-6">
+            <button class="btn btn-default" id="logup_btn">Sign up</button>
+          </div>
+        </div>
+      </div>
+        <div class="row" id="login_user_info">
+          <div class="col-md-9"></div>
+          <div class="col-md-2">
+            <div class ="col-md-4">
+              <h4>hello,</h4>
+            </div>
+            <div class="col-md-8">
+              <h4 id="username">anonymous</h4>
+            </div>
+            </div>
+          <div class="col-md-1">
+            <button class="btn btn-default" id="logout_btn">退出</button>
+          </div>
+        </div>
+        <!--看完了!!!!!-->
+
+      	<div class="col-md-2 logo">
+          <img src="pics/logo.jpg" height="130">
+        </div>
+        <div class="col-md-10">
+        	<p class="chn-title"><b>国家重点研发计划——重要热带病传播相关的入侵媒介及其病原体的生物学特性研究</b></p>
+          <div class="row">
+            <div class="col-md-9 eng-title">
+              <p><b>National Research and Development Plan: Research on Biological Characteristics of the Tropical Disease Related Invasion vectors and Pathogens</b><p>
+            </div>
+            <div class="col-md-3 search-box">
+              <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control" placeholder="搜索" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button">
+                      <span class=" glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+		      <!-- <div class="col-md-3 search-box">
+			      <div class="row">
+			       	<div class="col-md-offset-1 col-md-11">
+
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                    <input type="text" class="  search-query form-control" placeholder="搜索" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="button">
+                        <span class=" glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+
+			      	</div>
+			      </div>
+		      </div> -->
+      </div>
+
+      <div class="container">
+	      <div class="blog-masthead">
+		      <div class="row">
+		      	<div class="col-md-12">
+			        <nav class="blog-nav" >
+			          <a class="blog-nav-item" href="index.html">首页</a>
+			          <a class="blog-nav-item" href="关于项目.html">关于项目</a>
+			          <a class="blog-nav-item active" href="研究团队.html">研究团队</a>
+					  <a class="blog-nav-item" href="新闻动态.html">新闻动态</a>
+                      <a class="blog-nav-item" href="通知公告.html">通知公告</a>
+			          <a class="blog-nav-item" href="项目进展.html">项目进展</a>
+			          <a class="blog-nav-item" href="发表文章.html">发表文章</a>
+			          <a class="blog-nav-item" href="学术交流.html">学术交流</a>
+			          <a class="blog-nav-item" href="数据工具.html">数据/工具</a>
+			        </nav>
+			    	</div>
+			    </div>
+		    </div>
+      </div>
+
+    </div>
+
+	<div class="container">
+	    <div class="row">
+		   <div class="col-sm-3 team-list">
+		       <div class="blog-masthead">
+				<nav class="blog-nav1">
+				    <div class="col-xs">
+			          <a class="blog-nav1-item" href="#">主要负责团队</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#1">符林春</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#2">陈沛泉</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#2">李常青</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#3">曾庆平</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#5">袁冬生</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#6">杨瑞仪</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#7">张奉学</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#8">胡英杰</a>
+					  <a class="blog-nav1-item col-md-offset-4" href="#9">黄玲</a>
+
+					  <a class="blog-nav1-item" href="#">参与团队</a>
+			          <a class="blog-nav1-item col-md-offset-2" href="#">团队A</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">成员1</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">成员2</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">成员3</a>
+
+			          <a class="blog-nav1-item col-md-offset-2" href="#">团队B</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">成员1</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">成员2</a>
+			          <a class="blog-nav1-item col-md-offset-4" href="#">成员3</a>
+					</div>
+			    </nav>
+		       </div>
+			</div>
+		   <div class="col-sm-9 data-show">
+		       <p class = "team-introduction-title">团队简介：</p>
+			   <p class = "team-introduction-paragraph" id="1">符林春，男，研究员，博士生导师，广州中医药大学热带医学研所所长，广东省卫生系统“五个一工程”学术和技术带头人，国家中医药管理局中医药防治艾滋病咨询专家，中华中医药学会防治艾滋病分会副主任委员，广东省热带医学会副主任委员，中华医学会热带病和寄生虫分会委员，享受国务院政府特殊津贴专家。长期从事疟疾和中药抗病毒研究。主持或参与青蒿素类四个一类新药八种制剂的临床研究，参与青蒿素类复方研究，这些药物已成为最优秀的抗疟药，广泛使用于全球疟疾的防治。参与脑型疟的救治研究，使脑型疟病死亡率控制在 10%以下，达到国际先进水平。目前正参与中医药防治艾滋病的临床和实验研究。研究成果曾获得国家科技进步二等奖、三等奖各 1次，省部级一等奖 3 次，主持和参与各级政府科研项目 20 多项，发表学术论文 50 多篇。曾获“全国首届杰出青年中医奖”，国家教育部霍英东教育基金高校青年教师研究类二等奖。已培养博士、硕士研究生 10 多名，博士后研究人员 2 名。</p>
+			   <p class = "team-introduction-paragraph" id="2">陈沛泉，男，广东省罗定市人， 1949 年 9 月出生。现任广州中医药大学研究员，中医临床基础学科温病学（热带病）专业博士生导师，中华医学会热带病与寄生虫学学会会员，广东省热带医学学会常委，国家自然科学基金评审专家库专家，广东省自然科学基金评审专家库专家。陈沛泉研究员从事病原生物学和中医药防治热带病的教学与研究 30 多年，参与青蒿素的基础和临床研究，团结协作，发现了青蒿素类药的杀虫速度要比国际上常用的甲氟喹、奎宁、氯喹等快得多; 适当延迟长疗程，治愈率可达 90%以上; 用于脑型疟救治，死亡率低于10%;海南南部恶性疟原虫对氯喹、哌喹的抗性曾经相当严重；甲氟喹、氯喹、哌喹、奎宁等对恶性疟原虫配子体无效，在首剂给药后 3-4 周还可感染蚊媒，而青素类药首次给药后 14天即可阻断恶性疟传播；目前海南恶性疟对青蒿琥酯和双氢青蒿素是敏感的；复方双氢青蒿素有望成为 WHO 一线抗疟药；上世纪九十年代初开始涉足生物技术，把体内、体外试验联系起来，对药物阻断疾病传播的实验研究和临床应用方面有较深入的见解。当前的研究方向是以分子生物学和细胞生物学手段对中医药防治热带病（传染病）的作用机理和实用方法进行深入探讨。先后参加或主持完成 WHO、国家、部（省）、厅（局）级和对外合作科研项目 20多项，多次以专家身份出国进行合作研究、在国际学术会议上宣读论文。在省级以上刊物发表论文 40 多篇。已经培养和协助培养硕士、博士研究生 10 多名。陈沛泉研究员教研作风严谨，成绩显著，曾被评为 “全国优秀教师” ，“南粤优秀教师”； 获国家科技进步二、三等奖各 1 项，部（省）级科技进步奖 5 项。</p>
+			   <p class = "team-introduction-paragraph" id="3">李常青，男， 1965 年 9 月生，湖南华容人，研究员，中医临床基础专业导师。学术特长：中医药治疗慢性乙型肝炎、肝纤维化、肝硬化和脂肪肝的临床医疗实验研究工作。教学科研成果：近年来先后主持 2 项省级课题和 1 项厅级课题、参加 1 项国家自然科学基金课题和 1 项省级课题的研究，主要开展了苦参碱靶向制剂抗乙型肝炎病毒和抗免疫性肝损伤的实验研究，证实苦参碱靶向制剂可以提高苦参碱的抗乙型肝炎病毒作用效果，并可减少用药剂量，降低其毒性作用。完成了包括叶下珠复方在内的多个中药复方抗乙型肝炎病毒、抗肝损伤和抗肝纤维化作用的临床和药效学研究工作。论文论著发表情况：发表学术论文三十余篇，参加编写论著 1 部。招收研究人员人数：已毕业两名，在读三名。对外学术交流情况： 06、 07 年先后应邀出席台湾参加海峡两岸肝病治疗学术研讨会。</p>
+			   <p class = "team-introduction-paragraph" id="4">曾庆平，男，湖南常德人， 1961 年 4 月出生。理学硕士、工学博士，研究员。中国生物化学与分子生物学学会、中华医学会传染病与寄生虫病学分会、中国性病艾滋病防治协会和广东省热带病学会会员，受聘为国家药品食品监督管理局、 国家自然科学基金、广东省自然科学基金、广州市生物医药评审专家库专家，现任广州中医药大学热带医学研究所生物技术研究室主任，曾先后主持和参加国家自然科学基金项目（ 青蒿素生物合成途径的局部重建及青蒿素前体的生物转化、关木通中马兜铃酸合成代谢基因敲除的研究、 DNA 疫苗联用转基因中草药防治艾滋病的研究、 转人α-干扰素基因苦瓜的抗病毒实验研究）、国家中医药管理局项目（ 面向高产青蒿素的代谢途径工程育种研究）、省自然科学基金项目（ 鲨烯合酶基因敲除与转基因青蒿素高产植株的培育、中药复方配合 DNA 疫苗防治猴艾滋病的研究）、省科技计划项目（ 转基因青蒿氧化胁迫诱导及青蒿素前体大规模转化）、省教育厅项目（ 集成化艾滋病、乙型肝炎和 STD 基因诊断用反义探针微球的研制）及多项横向合作项目（ 高效低价疟疾检测试剂盒的研制等），在国内外发表论文数十篇，专著 4 本。 曾作为国家公派访问学者赴芬兰赫尔辛基大学生物工程研究所工作，并参访了英国牛津大学和剑桥大学、德国 Max-Plank 研究所、荷兰雷登大学和瑞士联邦技术研究所等著名学府及科研院所。 曾获邀参加美国著名的 Gordon 科学会议（ GRC）的植物代谢工程专题研讨会，并进行论文展示及开展学术交流，还与欧美多所大学及研究所建立了合作关系。自 1980 年以来，已在国内外发表学术论文 100 多篇（包括 SCI 论文），并在 GenBank发布基因序列 50 余条，主编专著《植物生物反应器》（ 2008，化学工业出版社）、《遗传修饰植物》（ 2006，科学出版社）、 《生物医药前沿技术》（ 2004，人民卫生出版社）、《人类艾滋病》（ 2000，人民卫生出版社），参编专著《植物生物技术原理与方法》（ 1990，湖南科技出版社）。申请国家发明专利 2 项，获奖 8 项。 现专业技术领域为生物工程，主要研究方向是中药生物工程（转基因中青蒿及青蒿素合成的微生物反应器研制）和分子中药学（青蒿基因组学、转录物组学、蛋白质组学、代谢物组学及其网络调控），并从事重大传染病（疟疾、 AIDS、 SARS、 STD 等）病原体快速诊断试剂盒的开发。目前已完成或正在开展的研究项目包括青蒿紫穗槐二烯合酶基因克隆及其在大肠杆菌中的表达、 青蒿素前体的微生物合成及其在青蒿无细胞提取液中的生物转化、青蒿 CYP 基因在酵母内膜上的表达及膜结合型 CYP 催化青蒿素前体的转变、酵母 SS 基因克隆及农杆菌介导的反义 SS 基因转移； 青蒿鲨烯合酶反义基因转化培育青蒿素高产植株的研究、 基于锚定 RT-PCR 的青蒿 EST 克隆、测序及生物信息学分析、 青蒿 cDNA 文库构建与 CYP 基因克隆及其表达的发育调节模式研究、 青蒿 ADS 基因启动子低温诱导结合转录因子的分离与鉴定、 青蒿素生物合成调控及其人工干预、 环境胁迫诱导的青蒿素合成基因表达及其信号转导机制、 单线态氧介导青蒿酸转变成青蒿素的体内外途径、 基于 PfLDH 靶点的中药抗疟成分高通量筛选与生物鉴定等。</p>
+			   <p class = "team-introduction-paragraph" id="5">袁冬生，男，江西乐安县人， 1964 年 10 月出生，医学博士，研究员，中医临床基础专业硕士生导师，广东省肝脏病学会理事，广州市科技评审专家。 现主要从事中医药抗乙肝病毒、抗肝纤维化以及中医药治疗酒精性和非酒精性脂肪肝的基础和临床研究。长期坚持消化内科、肝炎专科临床，积累了丰富的中西医治疗慢性乙型肝炎、肝硬化、脂肪肝的临床经验。发表相关论文 20 多篇，主持国家级课题 1 项，主持省级课题 2 项，参与省级课题 3 项。参编《中医临床基础》教材（高等教育出版社），副主编《中医学基础》教材（科学出版社）。先后指导硕士研究生 4 名。</p>
+			   <p class = "team-introduction-paragraph" id="6">杨瑞仪，女，广东大埔县人， 1972 年 5 月出生， 1998 年暨南大学免疫遗传专业硕士研究生毕业，广州中医药大学热带医学研究所副研究员， 中医临床基础硕士生导师，中华医学会传染病与寄生虫病学会会员。曾先后主持或参加国家自然科学基金、国家中医药管理局、广东省自然科学基金、广东省教育厅、广东省卫生厅、广东省中医药管理局等科研项目 20余项。在国内有影响的核心期刊发表论文数十篇，参编著作 3 部。现专业技术领域为医药生物工程，主要研究方向为中药生物工程（包括转基因中药、中药活性成分的合成代谢研究、中药活性成分基因工程研究等）及中药对肿瘤的免疫调控研究。</p>
+			   <p class = "team-introduction-paragraph" id="7">张奉学研究员，安徽省人， 1962 年出生。广州中医药大学中西医结合基础专业博士生导师。热带医学研究所病毒学研究室主任，世界中医药学会联合会肝病专业委员会常务理事，广东省热带医学学会常务理事、副秘书长， 是广东省“千百十人才工程”培养对象， 中国科学院“ 西部之光” 人才培养计划“联合学者”。《生物技术通讯》 理事，广州中医药大学学报 编委。1985 年毕业于安徽中医学院，并获得学士学位， 1991 年获得广州中医药大学中西医结合基础专业硕士学位， 2002 年 8 月起广州中医药大学在职博士。 2003 年 1 月至 2003 年 12月由国家科技部选派在日本长崎大学分子免疫遗传学系进修。 2005 年 6 月获得医学博士学位并获得香港求是科技基金会“求是优秀研究生奖”。长期从事病毒学研究和抗病毒药物的体内外活性研究开发与评价。 作为主要成员完成国家自然科学基金三项，主持广东省自然科学基金项目 3 项，参与 2 项，主持广州市中药现代化重大专项 1 项；公开发表科研论文 30 余篇， SCI 收录 4 篇。参编学术专著两部。负责核苷类抗乙型肝炎一类新药阿德福韦酯的药效学评价并于 2003 年 7 月获临床批文。另外，负责三个中药新药的主要药效学评价并已经通过省级鉴定。申请专利 3 项。近年主要在抗乙型肝炎病毒研究领域和美国 Thomas Jefferson 大学的 Dr. Mark Feitelson教授、中国科学院昆明植物研究所的陈纪军教授香港浸会大学徐敏博士等建立了稳定的研究伙伴关系，并同北京大学分子医学研究中心李刚教授在内啡肽类物质对 SIV 感染导致引起宿主细胞凋亡机制等领域进行了合作研究。开设并主讲《病毒学理论与技术》研究生课程一门，每学年 30 学时，教学效果良好。并编写研究生用教材一部。已独立招收硕士研究生 8 名并具体负责指导 4 名博士生学位论文实验。指导七年制学生参加“挑战杯”竞赛获得 2003 年省级二等奖。</p>
+			   <p class = "team-introduction-paragraph" id="8">胡英杰研究员，男， 1962 年生，祖籍湖南。广州中医药大学热带医学研究所副所长兼药学研究室主任，博士研究生导师，广东省新药审评专家库专家，广东省、广州市科技项目评审专家。 1983 年毕业于上海第一医学院药物化学专业（学士）； 1988 年毕业于中国科学院昆明植物研究所植物化学专业（硕士）； 2005 年毕业于广州中医药大学（博士）。 1988 年起在西南林学院任教植物化学、有机化学、药用植物资源开发利用学等课程，并从事多项国家级、部省级项目植物化学方面的研究； 1996 年起在广州中医药大学热带医学研究所从事药物活性中草药研究。研究领域涉及创新中药新药研发和中草药化学成分结构与药物活性研究，特别是治疗艾滋病中药与抗肿瘤活性天然产物研究。作为编委和副主编编写《植物化学》和《药用植物资源开发利用学》等 2 本高校教材。 参加或主持国家级和省部级科研项目 10项； 在 Phytochemistry、化学学报、中草药等药学类期刊发表论文 30 多篇，其中在 SCI 收录期刊 8 篇。获得发明专利授权 3 项。 2002 年和 2005 年获广东省科学技术奖二等奖各 1项。</p>
+			   <p class = "team-introduction-paragraph" id="9">黄玲，女， 1963 年 11 月生，江西省赣州市人，副研究员。主要研究方向：中药药理与毒理，中药对免疫性疾病的药效学和安全性评价及机制研究。2003 年 9 月之前在广州中医药大学热带医学研究所工作，任药理毒理研究室副主任，主要从事抗疟疾、肝炎、艾滋病、自身免疫性疾病等的药效学和安全性评价。参与 2 个抗疟疾新药 Artecom 和 Artekin 的临床前研究，均已通过国家审批，其中 Artekin 的安全性评价为试验负责人，该药已获 WHO 推荐。现在《广州中医药大学学报》编辑部负责实验研究论文的编辑工作。在国家及省级杂志发表论文共 26 篇。主持厅局级课题 3 项，参与国家及省部级课题 4项。</p>
+			   <p class = "team-introduction-title">研究方向：</p>
+		       <p class = "team-introduction-paragraph">以疟原虫为主的热带病原学基础研究、热带病诊断和病原鉴别技术的开发及应用研究、热带病病原和虫媒载体耐药机理研究、热带病疫苗的开发研制和应用研究、热带病相关多肽药物的开发和应用研究、热带病病理学及诊断技术及防治措施的研究、热带病预防与控制的研究、研究我省黎族高发疾病与热带病的关系</p>
+			   <p class = "team-introduction-title">课题任务：</p>
+			   <p class = "team-introduction-paragraph">开展对疟原虫、恙虫立克次体等的病原分子医学研究。其主要任务是利用 Genbank 中已知的基因序列和生物信息学手段，筛选可能的靶基因并鉴定其功能，掌握病原体在环境和药物选择压力下的基因的变异规律，病原体与宿主（人和储蓄宿主）相互作用的分子机制（致病和免疫的分子机制），为研制新的治疗药物、诊断试剂和基因疫苗的开发与研制奠定坚实的基础<p>
+			   <p class = "team-introduction-paragraph">热带病诊断和病原鉴别技术是热带病防治的基础技术，在临床诊断、疗效判定和流行病学调查中均具有重要的作用。热带病（原学）重点实验室除了要充分掌握和利用现有成熟的热带病基本诊断和病原鉴别技术外，还要不断地跟踪国内外的研究进展，不断地将新技术移植应用于基础研究的同时，积极探讨其临床实际应用的可行性。重点利用分子生物学、基因组学、蛋白质组学、免疫学、细胞生物学和现代组织（免疫）病理技术的方法和手段寻找热带病诊断和治疗的新的靶点，争取研究开发出具有自主知识产权的热带病诊断和病原鉴别技术，并将这些技术应用于临床和流行病学研究。努力争取将实验室建设成为具有发现、诊断和鉴定新的热带病病原能力的国内权威实验室。<p>
+			   <p class = "team-introduction-paragraph">热带病病原对治疗药物耐药和虫媒载体对各种杀虫剂耐药是导致疟疾等热带病难以控制的另一主要因素。在这一研究领域，实验室将主要应用分子生物学、基因组学、分子免疫学的方法和手段，从分子水平研究热带病病原和虫媒载体的耐药机理，进而寻找治疗和干预热带病病原和虫媒载体耐药的新方法。<p>
+			   <p class = "team-introduction-paragraph">当前研究者普遍认为，疫苗是防治热带病最安全、廉价和有效的手段。但时至今日，在热带病疫苗特别是疟疾疫苗研究方面，尽管国际社会投入了大量的人力、财力和物力，科学家进行了大量的研究工作，至今尚没有研制和生产出任何明确具有临床防治效果的疫苗。因此，在热带病疫苗开发方面也有许多研究空白。热带病原生物学重点实验室将充分利用分子生物学、免疫学、细胞生物学和当代先进的生物技术方法和手段，除了寻找有效诱导宿主免疫系统对热带病病原体的细胞和体液免疫反应的载体和佐剂，解决传统疫苗免疫效价过低，持续时间不长等传统疫苗策略的不足之处以外，还要采用新的构建和制备疫苗技术和策略重点开发疟疾、登革热、立克次体等热带病防治疫苗。<p>
+			   <p class = "team-introduction-paragraph">多肽是涉及生物体内各种细胞功能的生物活性物质，几乎所有细胞都受多肽的调节，它涉及激素分泌、神经、细胞生长和生殖等各个领域。研究体内分泌的多肽对疾病发病和转归等方面的影响，不仅有助于增进对人体生理及病理生理过程的认识，也将为临床诊断和治疗疾病提供理论依据，而且还有助于发现一些与疾病相关的新的蛋白质。热带病（原学）重点实验室将从分子、细胞生物学的角度重点寻找海洋生物及热带病原宿主体内分泌的活性多肽，争取发现数个具有防治热带病活性的多肽物质，进而探讨这些多肽在热带病发病和转归中的作用机理，为热带病的防治寻找新的方法和策略。<p>
+			   <p class = "team-introduction-paragraph">热带病是以生物性致病因子为主引起的疾病，是热带地区的多发病和特有疾病。 2003年在广东地区出现并迅速漫延至全国、全球的传染性非典型肺炎（ SARS），以及 2004 年初全球范围内禽流感的流行，给我国和世界人民造成巨大的灾难，这些疾病的爆发给广大科研工作者敲响了警钟：必须高度重视传染性疾病的防治研究工作。尽管海南在这两次流行中幸免波及，但决不能掉以轻心。探寻敏感、特异、迅速、准确、定量的传染性疾病的诊断技术对于有效控制传染性疾病的爆发流行至关重要。我们将在在病原分子医学研究的基础上，进行病毒感染的分子生物学诊断、细胞模型、抗病毒治疗及疗效评价的研究；对已知病原体如疟原虫、乙型肝炎病毒、恙虫病立克次体、粪类园线虫、猪囊尾蚴、曼氏裂头蚴、肝吸虫、弓形虫、肺孢子虫、隐孢子虫、艾滋病毒、冠状病毒等建立或引进简便、快速、敏感、特异的免疫检测和基因检测新技术，建立技术标准、研发商品化检测试剂盒，建立常见热带病诊断方法及防治措施，研究开发基因疫苗。<p>
+			   <p class = "team-introduction-paragraph">开展热带病原的对外检测服务，并提供专业性治疗建议。对省内各人群上述各种人体寄生虫和其他传染性疾病的流行病学调查，填补省内的有关方面资料空白，为有关机构提供准确的流行病学数据。同时开展预防与控制的相关研究。开展艾滋病和结核病的预防与控制措施和策略研究，重点研究艾滋病和结核病的诊断与筛查，预防与教育与干预方法等应用研究。<p>
+			   <p class = "team-introduction-title">受本项目支持发表的文章：</p>
+		       <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/18660804"> ·Genome sequence of the metazoan plant-parasitic nematode Meloidogyne incognita.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/23874975"> ·A lover and a fighter: the genome sequence of an entomopathogenic nematode Heterorhabditis bacteriophora.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/19606141"> ·The genome of the blood fluke Schistosoma mansoni.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/9851916"> ·Genome sequence of the nematode C. elegans: a platform for investigating biology.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/16679166"> ·Soil-transmitted helminth infections: ascariasis, trichuriasis, and hookworm.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="www.ncbi.nlm.nih.gov/pubmed/24580726"> ·The genome and life-stage specific transcriptomes of Globodera pallida elucidate key aspects of plant parasitism by a cyst nematode.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/19361881"> ·How to become a parasite –lessons from the genomes of nematodes.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/17885136"> ·Draft genome of the filarial nematode parasite Brugia malayi.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/22919663"> ·Impact of Leishmania metalloprotease GP63 on macrophage signaling.</a></p>
+			   <p class = "team-introduction-paragraph"><a href="http://www.ncbi.nlm.nih.gov/pubmed/25257746"> ·Large, rapidly evolving gene families are at the forefront of host-parasite interactions in Apicomplexa.</a></p>
+		   </div>
+		</div>
+	</div>
+
+
+
+	<div class="container">
+		<hr>
+	<footer class="footer">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="col-sm-7 project-introduction">
+              <p><b>相关链接</b></p>
+              <p><a href="http://zssom.sysu.edu.cn/">中山大学中山医学院</a></p>
+              <p><a href="http://www.ipd.org.cn/">中国疾病预防控制中心寄生虫病预防控制所</a></p>
+              <p><a href="http://life.fudan.edu.cn/ ">复旦大学生命科学学院</a></p>
+              <p><a href="http://www.ipd.org.cn/">南方医科大学公共卫生与热带医学学院</a></p>
+            </div>
+            <div class="col-sm-5">
+              <p><b>资源共享</b></p>
+              <p><a href="http://www.chinaias.cn/wjPart/index.aspx ">中国外来入侵物种数据库</a></p>
+              <p><a href="http://www.iucngisd.org/gisd/">全球入侵物种数据库GISD</a></p>
+              <p><a href="https://www.vectorbase.org/">人类病原体无脊椎动物媒介生物信息资源数据库（VectorBase）</a></p>
+            </div>
+          </div>
+          <div class="col-sm-3 col-sm-offset-1">
+            <div class=" QRcode-reminder">
+              <p>请关注我们的公众号：</p>
+            </div>
+            <!-- <div class="col-sm-4"> -->
+              <img src="pics/QRcode.png" height="105">
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3">
+          <p>Copyright &copy; 2016 <a href="http://www.sysu.edu.cn/2012/cn/index.htm">中山大学</a> &nbsp&nbsp&nbsp
+          联系我们：<a href="mailto:wuzhd@mail2.sysu.edu.cn">wuzhd@mail2.sysu.edu.cn</a></p>
+          <p>地址：中国广州市中山二路74号中山大学北校区（邮政编码：510080）</p>
+        </div>
+      </footer>
+	</div>
+
+  </body>

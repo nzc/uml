@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>home</title>
+    <link rel='icon' href='pics/logo.jpg' type='image/x-ico' />
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+      $("#chinese").click(function(){
+        $("#chinese").attr("disabled","disabled");
+        $("#english").removeAttr("disabled");
+          window.location.href="../page/index.html";
+      });
+      $("#english").click(function(){
+        $("#english").attr("disabled","disabled");
+        $("#chinese").removeAttr("disabled");
+        window.location.href="../english/index.html";
+      });
+      if(localStorage['uml_user_name']) {
+        $("h4#username").text(localStorage['uml_user_name']);
+        $("#user_info").hide();
+      } else {
+        $("#logout_btn").hide();
+      }
+      $("#logout_btn").click(function(){
+        $.post("http://localhost/uml/public/index/login/logout/userid/"+localStorage['uml_user_id'],
+        {},function(data,status){
+          var datajson = eval("(" + data + ")");
+          alert(datajson['message']);
+        }
+        );
+        localStorage.removeItem("uml_user_name");
+        localStorage.removeItem("uml_user_id");
+        localStorage.removeItem("uml_user_account");
+        window.location.reload();
+      });
+      $("#login_btn").click(function(){
+        window.location.href="login.html";
+      });
+      $("#logup_btn").click(function(){
+        window.location.href="signup.html";
+      });
+
+    });
+    </script>
+
+		<link href="custom_css/index.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" id="header">
+      <div class="container">
+      <!--昌哥看这里！！！！！！！！！！！！！-->
+      <div class="row">
+        <div class="col-xs-2">
+          <button class="btn btn-default" id="chinese">Chinese</button>
+          <button class="btn btn-default" id="english" disabled=“disabled”>English</button>
+        </div>
+        <div class="col-xs-8"></div>
+        <div class="col-xs-2"  id="user_info">
+        <div class="col-xs-6">
+          <button class="btn btn-default" id="login_btn">Login</button>
+        </div>
+        <div class="col-xs-6">
+          <button class="btn btn-default" id="logup_btn">Sign up</button>
+        </div>
+      </div>
+      </div>
+        <div class="row" id="login_user_info">
+          <div class="col-md-9"></div>
+          <div class="col-md-2">
+            <div class ="col-md-4">
+              <h4>hello,</h4>
+            </div>
+            <div class="col-md-8">
+              <h4 id="username">anonymous</h4>
+            </div>
+            </div>
+          <div class="col-md-1">
+            <button class="btn btn-default" id="logout_btn">Logout</button>
+          </div>
+        </div>
+        <!--看完了!!!!!-->
+
+      	<div class="col-md-2 logo">
+          <img src="pics/logo.jpg" height="130">
+        </div>
+        <div class="col-md-10">
+        </br>
+          <div class="row">
+            <div class="col-md-9 eng-title">
+              <p><b>National Research and Development Plan: Research on Biological Characteristics of the Tropical Disease Related Invasion vectors and Pathogens</b><p>
+            </div>
+            <div class="col-md-3 search-box">
+              <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control" placeholder="search" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button">
+                      <span class=" glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+		      <!-- <div class="col-md-3 search-box">
+			      <div class="row">
+			       	<div class="col-md-offset-1 col-md-11">
+
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                    <input type="text" class="  search-query form-control" placeholder="搜索" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="button">
+                        <span class=" glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+
+			      	</div>
+			      </div>
+		      </div> -->
+      </div>
+
+      <div class="container">
+	      <div class="blog-masthead">
+		      <div class="row">
+		      	<div class="col-md-12">
+			        <nav class="blog-nav" >
+			          <a class="blog-nav-item active" href="index.html">Home</a>
+			          <a class="blog-nav-item" href="关于项目.html">Project</a>
+			          <a class="blog-nav-item" href="研究团队.html">Team</a>
+					  <a class="blog-nav-item" href="新闻动态.html">News</a>
+                      <a class="blog-nav-item" href="通知公告.html">Announcement</a>
+			          <a class="blog-nav-item" href="项目进展.html">Progress</a>
+			          <a class="blog-nav-item" href="发表文章.html">Article</a>
+			          <a class="blog-nav-item" href="学术交流.html">Academic</a>
+			          <a class="blog-nav-item" href="数据工具.html">Data/Tool</a>
+			        </nav>
+			    	</div>
+			    </div>
+		    </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-sm-7 project-introduction">
+          <p class="project-introduction-title">Project brief</p>
+          <p class="project-introduction-paragraph">
+          		"Protecting human health" is one of the strategic priorities of China's biosafety priorities. Invasion of medical vector biology and its associated pathogens can cause epidemics of epidemics such as dengue fever, zaki card virus disease, malaria, trypanosomiasis, schistosomiasis, cantonensis and other important tropical diseases, epidemic outbreaks and spread, and even become major public health Security incidents, human health and social stability posed a great threat.
+          </p>
+					<p class="project-introduction-paragraph">
+          	In this project, the invasion of snails (Ampullaria and Amaranthus platyphylla and Tilia mongolica), Aedes albopictus (Aedes aegypti and Aedes albopictus), and imported pathogens (Plasmodium, Trypanosoma and Schistosoma japonicum) And provide scientific basis and technical support for the establishment of rapid detection, risk assessment and early warning system for the invasion, spread and dissemination of vector organisms and their pathogens, so as to promote the research of biological characteristics in China. Biosafety, science and technology support capacity - building.
+          </p>
+          <p class="project-introduction-paragraph">
+            In order to solve the key scientific problems of "biological characteristics related to invasion of major invasive organisms, identification of molecular markers and molecular mechanism of interaction with host", four issues are proposed in this project.
+          </p>
+          <p class="project-introduction-paragraph">
+            <b>Topic 1: Study on the biological characteristics of the invading vector and related pathogen invasion</b>：The establishment of standardized identification guidelines; to reveal the invasion of local organisms on the susceptibility of local pathogens and imported pathogens on the local media of infectious organisms in China, and to explore the biological pathogens of infectious organisms, and the identification of the molecular markers; Explore the potential of imported pathogens to localize through mosquito-mediated transmission and ultimately determine the risk of these invasive biological-borne diseases.
+          </p>
+          <p class="project-introduction-paragraph">
+           <b>Topic 2: Research on Ecological Adaptability and Evolution of Invading Medium</b>：Based on the study of system geography model, susceptibility difference, stress tolerance mechanism and potential disease-spreading potential of different ecotypes of invasive organisms, the results of the study on the ecological adaptability and the potential of diffusion of these ecotypes were explored Environmental Adaptability and Invasion and Diffusion of Invasive Organisms in the Process of Diffusion and Colonization.
+          </p>
+          <p class="project-introduction-paragraph">
+           <b>Topic 3: Genetic characteristics of the invasive vectors and related pathogens and molecular mechanisms of ecological adaptation</b>：The genetic basis of intraspecies, invasion, adaptability and susceptibility in invasive vector and pathogen localization process was studied by using comparative genomics and population genetics methods. The phylogenetic process of invading organisms and their different ecological groups was revealed. , Assessing the genomic mix of invasive and native species through natural crosses and genetic introgression, and the resulting proliferation and pathogenic risk. Screening Molecular markers that can be used to identify invasive vectors or enter pathogens.
+          </p>
+          <p class="project-introduction-paragraph">
+           <b>Issue 4: Molecular Mechanisms Involved in the Interaction of Invading Vectors and Pathogens / Pathogens with Hosts (Mediators)</b>：On the basis of genetic research, we will carry out co-infection and infection of native pathogens and invading vectors, imported pathogens and local hosts (including vector organisms), foreign pathogens and related pathogens (including symbionts) and hosts, foreign media and local media Biological interaction of molecular mechanisms; for disease evaluation / monitoring technology and the development of drug prevention and control of biological targets.
+          </p>
+          <p class="project-introduction-paragraph">
+           The completion of this project will enrich the biology of the invasion, spread and infection of snail (Pomacea canadensis, Agropyron cristatum, Diptera) and Aedes aegypti (Aedes aegypti and Aedes albopictus) in China. Monographs, patents and guidelines, etc.) to enhance the research level of China's invasion of the field of biological media, and to improve the national science and technology support capacity of biosafety.
+          </p>
+
+
+		</div>
+
+    <div class="sidebar col-sm-5 ">
+
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="panel panel-success">
+            <div class="more-news">
+              <a href="http://news2.sysu.edu.cn/">More >></a>
+            </div>
+            <div class="panel-heading">
+              <h3 class="panel-title">Project progress</h3>
+            </div>
+            <div class="panel-body">
+             <ul class="news-ul">
+                <li>
+                  <span class="news-date">16-08-07</span>
+                  <div class="news-title">
+                    <a href="http://news2.sysu.edu.cn/news01/147148.htm">
+                    <nobr>Affiliate research professor zhi-liang gao team issued a new cure hepatitis b markers research results</nobr></a>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-date">16-08-03</span>
+                  <div class="news-title">
+                    <a href="http://news2.sysu.edu.cn/news03/147153.htm">
+                    <nobr>Guangdong 21 hospital to form a coalition</nobr></a>
+                  </div>
+                </li>
+                <li>
+                  <span class="news-date">16-07-25</span>
+                  <div class="news-title">
+                    <a href="http://news2.sysu.edu.cn/news03/147149.htm">
+                    <nobr>Guangzhou team after six years and found two new susceptibility loci nasopharyngeal carcinoma (NPC) family members</nobr></a>
+                  </div>
+                </li>
+              </ul>
+            </div>   <!-- /.panel-body -->
+          </div><!-- /.panel-success -->
+
+          <div class="panel panel-danger">
+            <div class="more-notifications">
+              <a href="http://www.sysu.edu.cn/2012/en/announcements/index.htm">More >></a>
+            </div>
+            <div class="panel-heading">
+              <h3 class="panel-title">Published articles</h3>
+            </div>
+            <div class="panel-body">
+              <!-- <ul class="notification-ul">
+                <li>
+                  <span class="notification-date">16-08-05</span>
+                  <div class="notification-title">
+                    <a href="https://www.baidu.com/">
+                    <nobr>项目启动会将于2016年8月13-14日在中山大学南校区举办</nobr></a>
+                  </div>
+                </li>
+                <li>
+                  <span class="notification-date">16-08-02</span>
+                  <div class="notification-title">
+                    <a href="https://oa.sysu.edu.cn/oa/info/sysu/00000000560786d50156455a4c861f57/index">
+                    <nobr>关于做好防台风防汛工作的通知</nobr></a>
+                  </div>
+                </li>
+                <li>
+                  <span class="notification-date">16-07-08</span>
+                  <div class="notification-title">
+                    <a href="http://life.fudan.edu.cn/Data/View/2409">
+                    <nobr>关于进一步规范租赁人员薪酬发放的通知</nobr></a>
+                  </div>
+                </li>
+              </ul> -->
+            </div><!-- /.panel-body -->
+          </div><!-- /.panel-danger -->
+
+          <div class="page-header">
+            Cooperator
+          </div>
+          <div class="row">
+            <div class="col-sm-3 coop1">
+              <img src="pics/cooperators_logo/1.gif" title="Sun Yat-Sen University" height="112">
+            </div>
+            <div class="col-sm-3 coop2">
+              <img src="pics/cooperators_logo/2.jpg" title="Chinese Center for Disease Control and Prevention" height="102">
+            </div>
+            <div class="col-sm-3 coop3">
+              <img src="pics/cooperators_logo/3.png" title="Fudan University" height="92">
+            </div>
+            <div class="col-sm-3 coop4">
+              <img src="pics/cooperators_logo/4.jpg" title="Southern Medical University" height="110">
+            </div>
+          </div>
+
+        </div><!-- col-sm-11 col-sm-offset-1 -->
+      </div><!-- /row -->
+
+    </div><!-- /.sidebar -->
+  </div> <!-- /row -->
+
+  <hr>
+
+<footer class="footer">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="col-sm-7 project-introduction">
+          <p><b>Related links</b></p>
+          <p><a href="http://zssom.sysu.edu.cn/">Medical school of Sun Yat-Sen College</a></p>
+          <p><a href="http://www.ipd.org.cn/">The Chinese center for disease control and prevention of parasitic disease prevention and control</a></p>
+          <p><a href="http://life.fudan.edu.cn/ ">School of Life Science of Fudan University </a></p>
+          <p><a href="http://www.ipd.org.cn/">School of public health and tropical medicine of Southern Medical University</a></p>
+        </div>
+        <div class="col-sm-5">
+          <p><b>Resources sharing</b></p>
+          <p><a href="http://www.chinaias.cn/wjPart/index.aspx ">The database of invasive species in China</a></p>
+          <p><a href="http://www.iucngisd.org/gisd/">Global invasive species database(GISD)</a></p>
+          <p><a href="https://www.vectorbase.org/">Medium of human pathogens invertebrates biological information resources database（VectorBase）</a></p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-sm-offset-1">
+        <div class=" QRcode-reminder">
+          <p>WeChat public account：</p>
+        </div>
+        <!-- <div class="col-sm-4"> -->
+          <img src="pics/QRcode.png" height="105">
+        <!-- </div> -->
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3">
+      <p>Copyright &copy; 2016 <a href="http://www.sysu.edu.cn/2012/cn/index.htm">Sun Yat-Sen University</a> &nbsp&nbsp&nbsp
+      Connect us：<a href="mailto:wuzhd@mail2.sysu.edu.cn">wuzhd@mail2.sysu.edu.cn</a></p>
+      <p>Address：Sun Yat-Sen University, No. 74 Zhongshan Road, Guangzhou, China（Postal code：510080）</p>
+    </div>
+  </footer>
+
+</div> <!-- /container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
