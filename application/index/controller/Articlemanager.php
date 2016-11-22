@@ -151,6 +151,15 @@ class Articlemanager
         return json_encode($message);
     }
 
+    // 返回时间排序前n个文章
+    public function queryNArticle($n)
+    {
+        $article = new Article();
+        $list = $article->order('update_time desc')->limit($n)->select();
+        $message = ['type'=>True, 'message'=>'返回所有articles', 'articles'=>$list];
+        return json_encode($message);
+    }
+
     // 点赞
     public function addArticleZan($article_id)
     {
