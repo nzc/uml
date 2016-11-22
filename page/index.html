@@ -238,6 +238,37 @@
                 </div>   <!-- /.panel-body -->
               </div><!-- /.panel-success -->
 
+
+              <!-- Bootstrap core JavaScript
+                ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+              <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+              <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+              <script>
+                $(document).ready(function(){
+                  $.get("http://localhost/uml/public/index/articlemanager/queryNArticle?n=3",
+                    function(data, status){
+                      datajson = eval("(" + data + ")");
+                      var articles_list = datajson['articles'];
+                      var txt1 = '<li><span class="notification-date">'
+                      var txt2 = '</span><div class="notification-title"><a href="'
+                      var txt3 = '"><nobr>'
+                      var txt4 = '</nobr></a></div></li>'
+                      
+                      for(var i=0; i<articles_list.length; ++i) {
+                        var article_id = articles_list[i]["article_id"];
+                        var article_title = articles_list[i]["article_title"];
+                        var article_update_time = articles_list[i]["update_time"];
+                        var url = articles_list[i]["url"];
+                        var date = new Date(article_update_time);
+                        var time = String(date.getFullYear()).substr(2, 2)+'-'+(date.getMonth()+1)+'-'+date.getDate()
+                        $("#articles_list").append(txt1+time+txt2+url+txt3+article_title+txt4);
+                      }
+                    }
+                  );
+                });
+              </script>
+
               <div class="panel panel-danger">
                 <div class="more-notifications">
                   <a href="http://www.sysu.edu.cn/2012/en/announcements/index.htm">More >></a>
@@ -246,7 +277,8 @@
                   <h3 class="panel-title">发表文章</h3>
                 </div>
                 <div class="panel-body">
-                  <!-- <ul class="notification-ul">
+                  <ul class="notification-ul" id="articles_list">
+                  <!-- 
                     <li>
                       <span class="notification-date">16-08-05</span>
                       <div class="notification-title">
@@ -267,8 +299,8 @@
                         <a href="http://life.fudan.edu.cn/Data/View/2409">
                         <nobr>关于进一步规范租赁人员薪酬发放的通知</nobr></a>
                       </div>
-                    </li>
-                  </ul> -->
+                    </li> -->
+                  </ul>
                 </div><!-- /.panel-body -->
               </div><!-- /.panel-danger -->
 
