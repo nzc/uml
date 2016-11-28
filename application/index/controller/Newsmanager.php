@@ -140,6 +140,15 @@ class Newsmanager
         return json_encode($message);
     }
 
+    // 返回时间排序前n个文章
+    public function queryNNews($n)
+    {
+        $news = new News();
+        $list = $news->order('update_time desc')->limit($n)->select();
+        $message = ['type'=>True, 'message'=>'返回所有news', 'news'=>$list];
+        return json_encode($message);
+    }
+
     public function addZanNum($news_id)
     {
         $news = News::get($news_id);

@@ -142,4 +142,13 @@ class Informmanager
         return json_encode($message);
     }
 
+    // 返回时间排序前n个文章
+    public function queryNInform($n)
+    {
+        $inform = new Inform();
+        $list = $inform->order('update_time desc')->limit($n)->select();
+        $message = ['type'=>True, 'message'=>'返回所有informs', 'informs'=>$list];
+        return json_encode($message);
+    }
+
 }

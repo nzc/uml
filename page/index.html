@@ -200,40 +200,50 @@
 
 		</div>
 
+        <!-- Bootstrap core JavaScript
+                ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+              <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+              <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+              <script>
+                $(document).ready(function(){
+                  $.get("http://localhost/uml/public/index/newsmanager/queryNNews?n=3",
+                    function(data, status){
+                      datajson = eval("(" + data + ")");
+                      var news_list = datajson['news'];
+                      var txt1 = '<li><span class="notification-date">'
+                      var txt2 = '</span><div class="notification-title"><a href="'
+                      var txt3 = '"><nobr>'
+                      var txt4 = '</nobr></a></div></li>'
+                      
+                      for(var i=0; i<news_list.length; ++i) {
+                        var news_id = news_list[i]["news_id"];
+                        var news_title = news_list[i]["news_title"];
+                        var news_update_time = news_list[i]["update_time"];
+                        var url = 'http://localhost/uml/page/%E6%96%B0%E9%97%BB%E5%86%85%E5%AE%B9.html?news_id='+String(news_id);
+                        var date = new Date(news_update_time);
+                        var time = String(date.getFullYear()).substr(2, 2)+'-'+(date.getMonth()+1)+'-'+date.getDate()
+                        $("#news_list").append(txt1+time+txt2+url+txt3+news_title+txt4);
+                      }
+                    }
+                  );
+                });
+              </script>
+
         <div class="sidebar col-sm-5 ">
 
           <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
               <div class="panel panel-success">
                 <div class="more-news">
-                  <a href="http://news2.sysu.edu.cn/">More >></a>
+                  <a href="http://localhost/uml/page/%E6%96%B0%E9%97%BB%E5%8A%A8%E6%80%81.html">More >></a>
                 </div>
                 <div class="panel-heading">
-                  <h3 class="panel-title">项目进展</h3>
+                  <h3 class="panel-title">新闻动态</h3>
                 </div>
                 <div class="panel-body">
-                 <ul class="news-ul">
-                    <li>
-                      <span class="news-date">16-08-07</span>
-                      <div class="news-title">
-                        <a href="http://news2.sysu.edu.cn/news01/147148.htm">
-                        <nobr>附属三院高志良教授团队发表乙肝治愈标志物研究新成果</nobr></a>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="news-date">16-08-03</span>
-                      <div class="news-title">
-                        <a href="http://news2.sysu.edu.cn/news03/147153.htm">
-                        <nobr>广东21家医院组建医疗联盟</nobr></a>
-                      </div>
-                    </li>
-                    <li>
-                      <span class="news-date">16-07-25</span>
-                      <div class="news-title">
-                        <a href="http://news2.sysu.edu.cn/news03/147149.htm">
-                        <nobr>广州研究团队历经六年，发现鼻咽癌易感基因位点“家族”的两个新成员</nobr></a>
-                      </div>
-                    </li>
+                 <ul class="news-ul" id="news_list">
+                    
                   </ul>
                 </div>   <!-- /.panel-body -->
               </div><!-- /.panel-success -->
@@ -246,23 +256,23 @@
               <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
               <script>
                 $(document).ready(function(){
-                  $.get("http://localhost/uml/public/index/articlemanager/queryNArticle?n=3",
+                  $.get("http://localhost/uml/public/index/informmanager/queryNInform?n=3",
                     function(data, status){
                       datajson = eval("(" + data + ")");
-                      var articles_list = datajson['articles'];
+                      var informs_list = datajson['informs'];
                       var txt1 = '<li><span class="notification-date">'
                       var txt2 = '</span><div class="notification-title"><a href="'
                       var txt3 = '"><nobr>'
                       var txt4 = '</nobr></a></div></li>'
                       
-                      for(var i=0; i<articles_list.length; ++i) {
-                        var article_id = articles_list[i]["article_id"];
-                        var article_title = articles_list[i]["article_title"];
-                        var article_update_time = articles_list[i]["update_time"];
-                        var url = articles_list[i]["url"];
-                        var date = new Date(article_update_time);
+                      for(var i=0; i<informs_list.length; ++i) {
+                        var inform_id = informs_list[i]["inform_id"];
+                        var inform_title = informs_list[i]["inform_title"];
+                        var inform_update_time = informs_list[i]["update_time"];
+                        var url = 'http://localhost/uml/page/%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A%E8%AF%A6%E7%BB%86%E5%86%85%E5%AE%B9.html?inform_id='+String(inform_id);
+                        var date = new Date(inform_update_time);
                         var time = String(date.getFullYear()).substr(2, 2)+'-'+(date.getMonth()+1)+'-'+date.getDate()
-                        $("#articles_list").append(txt1+time+txt2+url+txt3+article_title+txt4);
+                        $("#informs_list").append(txt1+time+txt2+url+txt3+inform_title+txt4);
                       }
                     }
                   );
@@ -271,13 +281,13 @@
 
               <div class="panel panel-danger">
                 <div class="more-notifications">
-                  <a href="http://www.sysu.edu.cn/2012/en/announcements/index.htm">More >></a>
+                  <a href="http://localhost/uml/page/%E9%80%9A%E7%9F%A5%E5%85%AC%E5%91%8A.html">More >></a>
                 </div>
                 <div class="panel-heading">
-                  <h3 class="panel-title">发表文章</h3>
+                  <h3 class="panel-title">通知公告</h3>
                 </div>
                 <div class="panel-body">
-                  <ul class="notification-ul" id="articles_list">
+                  <ul class="notification-ul" id="informs_list">
                   <!-- 
                     <li>
                       <span class="notification-date">16-08-05</span>
